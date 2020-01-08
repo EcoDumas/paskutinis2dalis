@@ -32,9 +32,38 @@ public class Main {
         System.out.println(grupe);
 
         }
+     System.out.println("Įveskite grupę, kurią norite atspausdinti.");
+        Scanner scanner = new Scanner(System.in);
+        String grupe = scanner.next();
+        System.out.println("Šioje fakulteto grupėje yra "+ gautiFakultetoStudentus(grupe, sarasas) + " studentai.");
 
-        public int gautiFakultetoStudentus(String grupe, ArrayList)
+        Collections.sort(sarasas);
+        System.out.println("-----------------");
+        System.out.println("Studentai pagal pažymių vidurkį: ");
+        System.out.println(sarasas);
 
+        Iterator<Fakultetas> i = sarasas.iterator();
+        while (i.hasNext()){
+            Fakultetas objektas1 = i.next();
+            if(objektas1.getVidurkis() < 4){
+                i.remove();
+            }
+        }
+        System.out.println("-----------------");
+        System.out.println("Studentai turintys teigiamą vidurkį:");
+        System.out.println(sarasas);
+    }
 
-
+    public static int gautiFakultetoStudentus(String grupe, ArrayList<Fakultetas> list) {
+        int count = 0;
+        Iterator<Fakultetas> a = list.iterator();
+        while ((a.hasNext())){
+            Fakultetas objektas = a.next();
+            if (objektas.getGrupe().matches(grupe)){
+                count++;
+            }
+        }
+        return count;
+    }
+}
 }
